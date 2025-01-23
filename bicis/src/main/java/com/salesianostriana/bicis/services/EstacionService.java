@@ -31,13 +31,11 @@ public class EstacionService {
 
 
     public Estacion findById(Long id){
-        /*Optional<Estacion> estacionesOp = estacionRepository.findById(id);
+        Optional<Estacion> estacionesOp = estacionRepository.findById(id);
         if (estacionesOp.isEmpty()){
             throw new EntityNotFoundException("No se han encontrado estaciones con ese id");
         }
-        return estacionesOp;*/
-        return estacionRepository.findById(id)
-                .orElseThrow(() ->new EntityNotFoundException("No se han encontrado estaciones con el id " + id));
+        return estacionesOp.get();
     }
 
 

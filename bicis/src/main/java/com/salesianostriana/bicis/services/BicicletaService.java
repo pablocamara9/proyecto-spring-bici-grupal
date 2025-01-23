@@ -16,18 +16,23 @@ import java.util.Optional;
 public class BicicletaService {
 
     private final BicicletaRepository bicicletaRepository;
-
-
+    
     public List<Bicicleta> findAllBicicleta(){
-        List<Bicicleta> bicicletas = bicicletaRepository.findAll();
-        //Devuelve un Optional(O bien la lista de bibicletas o un error)
-        return Optional.ofNullable(bicicletas)
-                .orElseThrow(() -> new EntityNotFoundException("No hay bicicletas azin"));
+        List<Bicicleta> bibicletas = bicicletaRepository.findAll();
+        if (bibicletas.isEmpty()){
+            throw new EntityNotFoundException("No se han encontrado estaciones");
+        }
+        return bibicletas;
+
     }
 
     public Bicicleta findBicicleta(Long id){
-        return bicicletaRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("No hay bicicleta con ID: "+ id));
+        Optional<Bicicleta> bicicletasOp = bicicletaRepository.findById(id);
+        if (bicicletasOp.isEmpty()){
+            throw new EntityNotFoundException("No se han encontrado estaciones con ese id");
+        }
+        return bicicletasOp.get();
+
     }
 
     public Bicicleta save(EditBicicletaDto nuevo){
