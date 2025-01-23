@@ -1,4 +1,4 @@
-/*package com.salesianostriana.bicis.util;
+package com.salesianostriana.bicis.util;
 
 import com.salesianostriana.bicis.model.Bicicleta;
 import com.salesianostriana.bicis.model.Estacion;
@@ -17,13 +17,16 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class MainDeMentira {
 
-    private final UsuarioRepository usuarioRepository;
+    //private final UsuarioRepository usuarioRepository;
     private final BicicletaRepository bicicletaRepository;
-    private final EstacionRepository estacionRepositoriy;
-    private final EstacionRepository estacionRepository;
+    //private final EstacionRepository estacionRepositoriy;
+    //private final EstacionRepository estacionRepository;
 
     @PostConstruct
     public void run(){
+        bicicletaRepository.getAllByModelo(String modelo);
+
+ /*
         //Usuarios de prueba
         Usuario usuario = Usuario.builder()
                 .nombre("Carlos")
@@ -115,5 +118,6 @@ public class MainDeMentira {
         System.out.println(bicicleta2);
         System.out.println(bicicleta2.getListaUsos());
 
+*/
     }
-}*/
+}
