@@ -30,8 +30,7 @@ public class EstacionController {
 
     @GetMapping("/{id}")
     public Estacion getById(@PathVariable Long id) {
-        return estacionService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Estación no encontrada"));
+        return estacionService.findById(id);
     }
 
 
@@ -45,8 +44,7 @@ public class EstacionController {
     @PutMapping("/{id}")
     public Estacion edit(@RequestBody EditEstacionDto editDto,
                          @PathVariable Long id) {
-        return estacionService.update(id, editDto)
-                .orElseThrow(() -> new RuntimeException("Estación no encontrada"));
+        return estacionService.update(id, editDto);
     }
 
 

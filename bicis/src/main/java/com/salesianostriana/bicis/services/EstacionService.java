@@ -30,12 +30,14 @@ public class EstacionService {
     }
 
 
-    public Optional<Estacion> findById(Long id){
-        Optional<Estacion> estacionesOp = estacionRepository.findById(id);
+    public Estacion findById(Long id){
+        /*Optional<Estacion> estacionesOp = estacionRepository.findById(id);
         if (estacionesOp.isEmpty()){
             throw new EntityNotFoundException("No se han encontrado estaciones con ese id");
         }
-        return estacionesOp;
+        return estacionesOp;*/
+        return estacionRepository.findById(id)
+                .orElseThrow(() ->new EntityNotFoundException("No se han encontrado estaciones con el id " + id));
     }
 
 
@@ -49,23 +51,17 @@ public class EstacionService {
     }
 
 
-    public Optional<Estacion> update(Long id, EditEstacionDto dto) {
-        Optional<Estacion> estacionOptionalUpdate = estacionRepository.findById(id)
+    public Estacion update(Long id, EditEstacionDto dto) {
+        return estacionRepository.findById(id)
                 .map(old -> {
                     old.setNombre(dto.nombre());
                     old.setNumero(dto.numero());
                     old.setCapacidad(dto.capacidad());
                     old.setCoordenadas(dto.coordenadas());
                     return estacionRepository.save(old);
-                });
+                })
+                .orElseThrow(() -> new EntityNotFoundException("No se han encontrado estaciones con el id " + id));
 
-
-        if (estacionOptionalUpdate.isEmpty()){
-            throw new EntityNotFoundException("No se ha encontrado esa estacion");
-        }
-
-
-        return estacionOptionalUpdate;
     }
 
 
