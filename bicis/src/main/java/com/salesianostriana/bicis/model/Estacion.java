@@ -46,7 +46,15 @@ public class Estacion {
             orphanRemoval = true)
     private List<Bicicleta> listaBicicletas = new ArrayList<>();
 
+    @ToString.Exclude
+    @Builder.Default
+    @OneToMany(mappedBy = "estacion",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Uso> usosFinalizados = new ArrayList<>();
 
+    // Helpers ESTACION - BICI
     public void addBici(Bicicleta b) {
         b.setEstacion(this);
         this.listaBicicletas.add(b);

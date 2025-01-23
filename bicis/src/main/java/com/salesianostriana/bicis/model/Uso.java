@@ -36,6 +36,10 @@ public class Uso {
     @JoinColumn(name = "bicicleta_id")
     private Bicicleta bicicleta;
 
+    //Asociación USO -ESTACION
+    @ManyToOne
+    private Estacion estacion;
+
 
     //Equals & Code
     @Override
